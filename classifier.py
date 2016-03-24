@@ -32,6 +32,9 @@ class classifier:
         alpha_t_v = (alpha_m_1 * v_total) #(alpha-1) * length of vocab
         self.makeMAPMatrixHelper(alpha_m_1, alpha_t_v)
 
+    def resetClassMat(self):
+        self.class_mat = np.zeros((l_total, v_total))
+
     #Used for Classification Calculations
     def makeLogMAPMatrix(self, alpha):
         alpha_m_1 = (alpha-1)

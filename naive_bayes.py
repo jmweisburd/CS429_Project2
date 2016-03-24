@@ -45,8 +45,9 @@ test = 1
 while b != -5:
     print(test)
     test += 1
+    
+    nb_c.resetClassMat()
     beta_test = math.pow(10, b)
-    print(beta_test)
     alpha_vector.append(beta_test)
     alpha = 1 + beta_test
     nb_c.makeLogMAPMatrix(alpha)

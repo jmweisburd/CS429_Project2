@@ -69,3 +69,61 @@ class entropy:
             self.top_100_words.append(self.word_array[top_100_index[i]])
 
         print(self.top_100_words)
+
+
+import numpy as np
+from classifier import *
+import math
+
+v_total = 61188
+l_total = 20
+
+def entropyEq(p_x_and_y, p_x):
+    if p_x_and_y <= 0 or p_x <= 0:
+        return 0
+    else:
+        #return (p_x_and_y)*(math.log(p_x/p_x_and_y, 2))
+        return -(p_x)*(math.log(p_x))
+
+class entropy:
+
+    def __init__(self, training_matrix, likelihood):
+        self.t_mat = training_matrix.t_mat
+        self.p_y = likelihood
+
+        self.total_words_in_docs = self.t_mat.sum()
+        self.count_x = np.sum(self.t_mat, axis=0)
+
+        self.entropy_array = np.zeros((v_total))
+        self.word_array = []
+        self.top_100_words = []
+
+        self.readVocabulary()
+
+    def calculateEntropy(self):
+        for i in range(v_total):
+            self.entropy_array[i] = self.entropyHelper(i)
+
+    def entropyHelper(self, word_id):
+        acc = 0
+        for i in range(l_total):
+            p_x = self.count_x[word_id]/self.total_words_in_docs
+            p_y = self.p_y[i]
+            p_x_and_y = p_x * p_y
+            acc += entropyEq(p_x_and_y, p_x)
+
+        return acc
+
+    def readVocabulary(self):
+        with open('data/vocabulary.txt') as f:
+            for line in f:
+                self.word_array.append(line.rstrip())
+
+    def getTop100(self):
+        top_100_index = self.entropy_array.argsort()[:100]
+        #top_100_index = (-self.entropy_array).argsort()[:100]
+        print(top_100_index)
+        for i in range(len(top_100_index)):
+            self.top_100_words.append(self.word_array[top_100_index[i]])
+
+        print(self.top_100_words)
