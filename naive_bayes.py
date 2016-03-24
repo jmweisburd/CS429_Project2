@@ -54,7 +54,7 @@ while b != -5:
     accur = nb_c.calculateAccuracy(False)
     print(accur)
     accuracy_vector.append(accur)
-    a = a - 0.05
+    b = b - 0.05
 
 print(alpha_vector)
 print(accuracy_vector)
