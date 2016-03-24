@@ -33,7 +33,7 @@ class classifier:
         self.makeMAPMatrixHelper(alpha_m_1, alpha_t_v)
 
     def resetClassMat(self):
-        self.class_mat = np.zeros((l_total, v_total))
+        self.class_doc_vector = []
 
     #Used for Classification Calculations
     def makeLogMAPMatrix(self, alpha):
@@ -65,7 +65,8 @@ class classifier:
         word_id = (line_vector[1])-1
         word_count = line_vector[2]
         for i in range(l_total):
-            doc_vector[i] += (word_count * self.class_mat[i, word_id])
+            if self.class_mat[i, word_id] >= 0:
+                doc_vector[i] += (word_count * math.log(self.class_mat[i, word_id],2))
 
     def addLogLikelihood(self, doc_vector):
         for i in range(l_total):
@@ -78,6 +79,7 @@ class classifier:
     def classify(self):
         doc_id = 1
         doc_vector = np.zeros((l_total))
+        self.class_doc_vector = []
         with open('data/test.data') as f:
             for line in f:
                 line_vector = line.split()

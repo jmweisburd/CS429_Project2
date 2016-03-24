@@ -9,7 +9,7 @@ v_total = 61188
 beta = 1/(v_total)
 alpha = (1+beta)
 
-alpha_vector = []
+beta_vector = []
 accuracy_vector = []
 
 
@@ -36,7 +36,7 @@ nb_c = classifier(tm, p_y)
 
 #nb_c.makeLogMAPMatrix(alpha)
 #nb_c.classify()
-#print(nb_c.calculateAccuracy(True))
+print(nb_c.calculateAccuracy(True))
 
 b = 0
 beta_test = 0
@@ -45,17 +45,17 @@ test = 1
 while b != -5:
     print(test)
     test += 1
-    
-    nb_c.resetClassMat()
+    #nb_c.resetClassMat()
     beta_test = math.pow(10, b)
-    alpha_vector.append(beta_test)
-    alpha = 1 + beta_test
-    nb_c.makeLogMAPMatrix(alpha)
+    beta_vector.append(beta_test)
+    alpha = (1 + beta_test)
+    nb_c.makeMAPMatrix(alpha)
     nb_c.classify()
     accur = nb_c.calculateAccuracy(False)
     print(accur)
     accuracy_vector.append(accur)
     b = b - 0.05
 
-print(alpha_vector)
-print(accuracy_vector)
+
+#print(alpha_vector)
+#print(accuracy_vector)
