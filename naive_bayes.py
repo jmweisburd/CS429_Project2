@@ -36,7 +36,7 @@ nb_c = classifier(tm, p_y)
 
 #nb_c.makeLogMAPMatrix(alpha)
 #nb_c.classify()
-print(nb_c.calculateAccuracy(True))
+#print(nb_c.calculateAccuracy(True))
 
 b = 0
 beta_test = 0
