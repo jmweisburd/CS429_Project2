@@ -38,19 +38,23 @@ nb_c = classifier(tm, p_y)
 #nb_c.classify()
 #print(nb_c.calculateAccuracy(True))
 
-a = 0
-alph = 0
+b = 0
+beta_test = 0
+test = 1
 
-#while a != -5:
-    #alph = math.pow(10, a)
-    #alpha_vector.append(alph)
-    #print(alph)
-    #nb_c.makeLogMAPMatrix(alph)
-    #nb_c.classify()
-    #accur = nb_c.calculateAccuracy(False)
-    #print(accur)
-    #accuracy_vector.append(accur)
-    #a = a - 0.05
+while b != -5:
+    print(test)
+    test += 1
+    beta_test = math.pow(10, b)
+    print(beta_test)
+    alpha_vector.append(beta_test)
+    alpha = 1 + beta_test
+    nb_c.makeLogMAPMatrix(alph)
+    nb_c.classify()
+    accur = nb_c.calculateAccuracy(False)
+    print(accur)
+    accuracy_vector.append(accur)
+    a = a - 0.05
 
-#print(alpha_vector)
-#print(accuracy_vector)
+print(alpha_vector)
+print(accuracy_vector)
