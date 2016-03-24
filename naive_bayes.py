@@ -49,7 +49,7 @@ while b != -5:
     print(beta_test)
     alpha_vector.append(beta_test)
     alpha = 1 + beta_test
-    nb_c.makeLogMAPMatrix(alph)
+    nb_c.makeLogMAPMatrix(alpha)
     nb_c.classify()
     accur = nb_c.calculateAccuracy(False)
     print(accur)
